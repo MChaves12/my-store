@@ -1,16 +1,25 @@
-"use client"
+"use client";
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { vantagens } from "@/assets/vantagens";
+import { vantagens, socials } from "@/assets/vantagens";
 import { mockProducts } from "@/assets/mockProducts";
 import ProductCard from "@/components/ProductCard";
 import { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
-
   const [products, setProducts] = useState(mockProducts);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <>
@@ -73,21 +82,99 @@ export default function Home() {
 
       <section className="border-t border-gray-200 bg-gray-50">
         <MaxWidthWrapper className="py-10">
-              <h3 className="text-3xl text-center uppercase font-bold md:text-4xl md:mt-11">
-                Apenas o essencial
-              </h3>
-              <div className="flex justify-center sm:flex-row gap-4 mt-6">
-                <Button> Todos </Button>
-                <Button> Prata </Button>
-                <Button> Ouro </Button>
-                <Button> Mais Vendidos </Button>
-              </div>
-              <div className="container grid grid-cols-2 mt-8 gap-1 px-2 lg:grid-cols-4">
-                {products.map((product) => (
-                  <ProductCard key={product.name} imgURL={product.imgURL} name={product.name} price={product.price} />
+          <h3 className="text-3xl text-center uppercase font-bold md:text-4xl md:mt-11">
+            Apenas o <span className="text-green-600"> essencial </span>
+          </h3>
+          <div className="flex justify-center sm:flex-row gap-4 mt-6">
+            <Button> Todos </Button>
+            <Button> Prata </Button>
+            <Button> Ouro </Button>
+            <Button> Mais Vendidos </Button>
+          </div>
+          <div className="container grid grid-cols-2 mt-8 gap-1 px-2 lg:grid-cols-4">
+            {products.map((product) => (
+              <ProductCard
+                key={product.name}
+                imgURL={product.imgURL}
+                name={product.name}
+                price={product.price}
+              />
+            ))}
+          </div>
+        </MaxWidthWrapper>
+
+        <section className="border-t border-gray-200 bg-gray-50">
+          <MaxWidthWrapper className="py-10">
+            <h3 className="text-3xl text-center uppercase font-bold md:text-4xl md:mt-11">
+              Fique <span className="text-green-600"> atualizada </span> <br />{" "}
+              das novidades
+            </h3>
+            <p className="mt-6 text-center text-lg text-muted-foreground">
+              Se inscreva na nossa newsletter para ficar por dentro e todas as
+              novidades e tendencias.
+            </p>
+            <div className="flex flex-col items-center">
+              <form className="flex flex-col items-center">
+                <div>
+                  <div className="lg:w-[700px] py-2">
+                    <Label htmlFor="text"> Nome </Label>
+                    <Input
+                      type="text"
+                      className={cn({
+                        "focus-visible:ring-red-500": errors.email,
+                      })}
+                      placeholder="Seu nome"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="lg:w-[700px] py-2">
+                    <Label htmlFor="email"> Email </Label>
+                    <Input
+                      type="email"
+                      className={cn({
+                        "focus-visible:ring-red-500": errors.email,
+                      })}
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+                <Button> Quero estar sempre atualizada! </Button>
+              </form>
+            </div>
+          </MaxWidthWrapper>
+        </section>
+
+        <footer className="border-t border-gray-200 bg-gray-50">
+          <MaxWidthWrapper>
+            <div className="flex justify-between items-start mt-5 gap-20 flex-wrap max-lg:flex-col max-sm:flex-col max-sm:items-center">
+              <div className="flex flex-col items-center">
+                <h1> Amarílis </h1>
+                <div className="mt-2">
+                {socials.map((item) => (
+                  <div key={item.name}  className="h-10 w-10 flex items-center justify-center rounded-full bg-green-100 text-green-900">
+                  {<item.icon className="w-1/3 h-1/3" />}
+                </div>
                 ))}
               </div>
-        </MaxWidthWrapper>
+                <p className="mt-6 text-base leading-7 sm:max-w-sm">
+                  Vista-se de atitude.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-between mb-5 max-sm:flex-col max-sm:items-center">
+              <div className="flex flex-1 justify-start items-center gap-2 cursor-pointer">
+                <p>Copyright. All rights reserved.</p>
+              </div>
+              
+              
+              <p className="cursor-pointer">
+                Terms & conditions
+              </p>
+            </div>
+          </MaxWidthWrapper>
+        </footer>
       </section>
     </>
   );

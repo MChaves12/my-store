@@ -1,4 +1,4 @@
-import { Truck, BadgeCheck, BellDot } from "lucide-react"
+import { Truck, BadgeCheck, BellDot, Instagram } from "lucide-react"
 
 export const vantagens = [
     {
@@ -15,5 +15,12 @@ export const vantagens = [
         name: "Newsletter",
         icon: BellDot,
         description: "Inscreva-se na nossa Newsletter para ficar por dentro de todas as novidades"
+    }
+]
+
+export const socials = [
+    {
+        name: "Instgram",
+        icon: Instagram,
     }
 ]
