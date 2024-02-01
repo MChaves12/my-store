@@ -23,7 +23,7 @@ const Navbar = () => {
                       className={buttonVariants({
                         variant: 'default',
                       })}>
-                      Sign in
+                      Entrar
                     </Link>
 
                     <Link
@@ -31,7 +31,7 @@ const Navbar = () => {
                       className={buttonVariants({
                         variant: 'ghost',
                       })}>
-                      Create account
+                      Crie uma conta
                     </Link>
                 </div>
 
