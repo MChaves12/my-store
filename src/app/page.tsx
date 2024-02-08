@@ -6,14 +6,15 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { vantagens } from "@/assets/vantagens";
 import { mockProducts } from "@/assets/mockProducts";
 import ProductCard from "@/components/ProductCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
+import api from "@/app/api/routes";
+import Shop from "@/components/Shop";
 
 export default function Home() {
-  const [products, setProducts] = useState(mockProducts);
 
   const {
     register,
@@ -81,27 +82,7 @@ export default function Home() {
       </section>
 
       <section className="border-t border-gray-200 bg-gray-50">
-        <MaxWidthWrapper className="py-10">
-          <h3 className="text-3xl text-center uppercase font-bold md:text-4xl md:mt-11">
-            Apenas o <span className="text-green-600"> essencial </span>
-          </h3>
-          <div className="flex justify-center sm:flex-row gap-4 mt-6">
-            <Button> Todos </Button>
-            <Button> Prata </Button>
-            <Button> Ouro </Button>
-            <Button> Mais Vendidos </Button>
-          </div>
-          <div className="container grid grid-cols-2 mt-8 gap-1 px-2 lg:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard
-                key={product.name}
-                imgURL={product.imgURL}
-                name={product.name}
-                price={product.price}
-              />
-            ))}
-          </div>
-        </MaxWidthWrapper>
+        <Shop />
 
         <section className="border-t border-gray-200 bg-gray-50">
           <MaxWidthWrapper className="py-10">

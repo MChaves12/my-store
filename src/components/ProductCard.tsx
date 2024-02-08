@@ -2,17 +2,19 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 
 interface ProductCardProps {
-  imgURL: string;
+  _id: string,
+  image: string;
   name: string;
   price: string;
 }
 
-const ProductCard = ({ imgURL, name, price }: ProductCardProps) => {
+const ProductCard = ({ _id, image, name, price }: ProductCardProps) => {
   return (
     <>
       <div className="flex flex-col">
         <Image
-          src={imgURL}
+        key={_id}
+          src={image}
           alt={name}
           width={400}
           height={0}
